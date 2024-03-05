@@ -12,14 +12,17 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+class MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
-  final List<GlobalKey<NavigatorState>> navigatorKeys = [];
+  final tabs = TabItem.values;
+  late final List<GlobalKey<NavigatorState>> navigatorKeys =
+      TabItem.values.map((e) => GlobalKey<NavigatorState>()).toList();
 
   int get _currentIndex => tabs.indexOf(_currentTab);
 
-  GlobalKey<NavigatorState> get _currentTabNavigationKey => navigatorKeys[_currentIndex];
+  GlobalKey<NavigatorState> get _currentTabNavigationKey =>
+      navigatorKeys[_currentIndex];
 
   bool get extendBody => true;
 
@@ -28,7 +31,6 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   @override
   void initState() {
     super.initState();
-    initNavigatorKeys();
   }
 
   @override
@@ -41,7 +43,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
         drawer: const MenuDrawer(),
         body: Container(
           color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+          padding: EdgeInsets.only(
+              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
           child: SafeArea(
             bottom: !extendBody,
             child: pages,
@@ -53,7 +56,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
   }
 
   bool get isRootPage =>
-      _currentTab == TabItem.home && _currentTabNavigationKey.currentState?.canPop() == false;
+      _currentTab == TabItem.home &&
+      _currentTabNavigationKey.currentState?.canPop() == false;
 
   IndexedStack get pages => IndexedStack(
       index: _currentIndex,
@@ -123,13 +127,15 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
     });
   }
 
-  BottomNavigationBarItem bottomItem(
-      bool activate, IconData iconData, IconData inActivateIconData, String label) {
+  BottomNavigationBarItem bottomItem(bool activate, IconData iconData,
+      IconData inActivateIconData, String label) {
     return BottomNavigationBarItem(
         icon: Icon(
           key: ValueKey(label),
           activate ? iconData : inActivateIconData,
-          color: activate ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
+          color: activate
+              ? context.appColors.iconButton
+              : context.appColors.iconButtonInactivate,
         ),
         label: label);
   }
@@ -150,12 +156,6 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
       while (navigationKey.currentState?.canPop() == true) {
         navigationKey.currentState!.pop();
       }
-    }
-  }
-
-  void initNavigatorKeys() {
-    for (final _ in tabs) {
-      navigatorKeys.add(GlobalKey<NavigatorState>());
     }
   }
 }

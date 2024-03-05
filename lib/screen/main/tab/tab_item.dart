@@ -1,11 +1,18 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/main/tab/favorite/f_favorite.dart';
 import 'package:fast_app_base/screen/main/tab/home/f_home.dart';
+import 'package:fast_app_base/screen/main/tab/local_life/f_local_life.dart';
+import 'package:fast_app_base/screen/main/tab/my/f_my.dart';
 import 'package:flutter/material.dart';
+
+import 'chat/f_chat.dart';
 
 enum TabItem {
   home(Icons.home, '홈', HomeFragment()),
-  favorite(Icons.star, '즐겨찾기', FavoriteFragment(isShowBackButton: false));
+  localLife(Icons.holiday_village_outlined, '동네생활', FavoriteFragment()),
+  nearMe(Icons.pin_drop_outlined, '내 근처', LocalLifeFragment()),
+  chat(Icons.chat_bubble_outline, '채팅', ChatFragment()),
+  my(Icons.person_outline_outlined, '나의 당근', MyFragment());
 
   final IconData activeIcon;
   final IconData inActiveIcon;

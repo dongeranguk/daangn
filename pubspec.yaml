@@ -111,6 +111,11 @@ flutter:
     - assets/image/flag/
     - assets/image/darkmode/
     - assets/translations/
+    - assets/image/detail/
+    - assets/image/fab/
+    - assets/image/flag/
+    - assets/image/home/
+    - assets/image/notification/
     - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
