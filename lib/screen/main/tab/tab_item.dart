@@ -6,11 +6,12 @@ import 'package:fast_app_base/screen/main/tab/my/f_my.dart';
 import 'package:flutter/material.dart';
 
 import 'chat/f_chat.dart';
+import 'near_me/f_near_me.dart';
 
 enum TabItem {
   home(Icons.home, '홈', HomeFragment()),
-  localLife(Icons.holiday_village_outlined, '동네생활', FavoriteFragment()),
-  nearMe(Icons.pin_drop_outlined, '내 근처', LocalLifeFragment()),
+  localLife(Icons.holiday_village_outlined, '동네생활', LocalLifeFragment()),
+  nearMe(Icons.pin_drop_outlined, '내 근처', NearMeFragment()),
   chat(Icons.chat_bubble_outline, '채팅', ChatFragment()),
   my(Icons.person_outline_outlined, '나의 당근', MyFragment());
 
